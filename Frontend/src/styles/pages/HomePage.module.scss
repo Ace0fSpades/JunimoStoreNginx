@@ -1,0 +1,253 @@
+@use '../variables.scss' as vars;
+@use '../mixins.scss' as mixins;
+
+.homePage {
+  min-height: 100vh;
+  padding-bottom: vars.$spacing-xxl;
+  
+  .heroSection {
+    position: relative;
+    margin-bottom: vars.$spacing-xl;
+    
+    .heroContent {
+      height: 600px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      
+      @include mixins.respond-to(md) {
+        height: 450px;
+      }
+      
+      @include mixins.respond-to(sm) {
+        height: 350px;
+      }
+    }
+    
+    .heroOverlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to right, rgba(vars.$bg-dark, 0.85) 0%, rgba(vars.$bg-dark, 0.5) 50%, rgba(vars.$bg-dark, 0.2) 100%);
+    }
+    
+    .heroInfo {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      padding: vars.$spacing-xxl 0;
+      color: vars.$text-inverted;
+      
+      h1 {
+        font-size: 3rem;
+        margin-bottom: vars.$spacing-base;
+        
+        @include mixins.respond-to(md) {
+          font-size: 2.5rem;
+        }
+        
+        @include mixins.respond-to(sm) {
+          font-size: 2rem;
+        }
+      }
+      
+      .gamePrice {
+        font-size: vars.$font-size-xxl;
+        font-weight: 700;
+        margin-bottom: vars.$spacing-large;
+        
+        .discount {
+          display: inline-block;
+          margin-left: vars.$spacing-base;
+          padding: vars.$spacing-xs vars.$spacing-small;
+          background-color: vars.$error-color;
+          border-radius: vars.$border-radius-small;
+          font-size: vars.$font-size-small;
+          vertical-align: middle;
+        }
+      }
+    }
+    
+    .heroNav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+      width: 50px;
+      height: 50px;
+      border-radius: vars.$border-radius-circle;
+      background-color: rgba(vars.$bg-dark, 0.6);
+      color: vars.$text-inverted;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all vars.$transition-base;
+      
+      &:hover {
+        background-color: vars.$primary-color;
+      }
+      
+      &.prev {
+        left: vars.$spacing-medium;
+      }
+      
+      &.next {
+        right: vars.$spacing-medium;
+      }
+      
+      @include mixins.respond-to(sm) {
+        width: 40px;
+        height: 40px;
+        
+        &.prev {
+          left: vars.$spacing-small;
+        }
+        
+        &.next {
+          right: vars.$spacing-small;
+        }
+      }
+    }
+    
+    .heroIndicators {
+      position: absolute;
+      bottom: vars.$spacing-medium;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      gap: vars.$spacing-small;
+      
+      .indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: vars.$border-radius-circle;
+        background-color: rgba(vars.$bg-white, 0.5);
+        cursor: pointer;
+        transition: all vars.$transition-base;
+        
+        &.active {
+          background-color: vars.$primary-color;
+        }
+        
+        &:hover {
+          background-color: vars.$primary-light;
+        }
+      }
+    }
+  }
+  
+  .sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: vars.$spacing-medium;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: vars.$spacing-small;
+    
+    h2 {
+      font-family: vars.$font-family-headings;
+      font-size: vars.$font-size-h2;
+      color: #fff;
+      margin: 0;
+    }
+    
+    .viewAll {
+      display: flex;
+      align-items: center;
+      gap: vars.$spacing-xs;
+      color: vars.$primary-color;
+      font-weight: 600;
+      transition: color 0.2s;
+      
+      &:hover {
+        color: vars.$primary-light;
+      }
+    }
+  }
+  
+  .sectionTitle {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 40px 0 20px;
+    color: vars.$text-inverted;
+  }
+  
+  .gamesSection, .newsSection {
+    margin-top: vars.$spacing-xl;
+  }
+  
+  .gamesGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: vars.$spacing-medium;
+    
+    @include mixins.respond-to(lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    @include mixins.respond-to(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include mixins.respond-to(sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .newsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: vars.$spacing-medium;
+    
+    @include mixins.respond-to(lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include mixins.respond-to(sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .loading, .error, .empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: vars.$spacing-xl;
+    border-radius: vars.$border-radius-base;
+    font-size: vars.$font-size-large;
+  }
+  
+  .loading {
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.2);
+    animation: pulse 1.5s infinite;
+  }
+  
+  .error {
+    color: #fff;
+    background: rgba(220, 53, 69, 0.2);
+    border: 1px solid rgba(220, 53, 69, 0.5);
+  }
+  
+  .empty {
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.2);
+    font-style: italic;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.6;
+  }
+} 

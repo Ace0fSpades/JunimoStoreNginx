@@ -1,0 +1,176 @@
+@use '../../styles/variables.scss' as vars;
+@use '../../styles/mixins.scss' as mixins;
+
+.newsDetailsPage {
+  padding: vars.$spacing-large 0;
+  
+  .backNav {
+    margin-bottom: vars.$spacing-base;
+    
+    .backLink {
+      display: inline-flex;
+      align-items: center;
+      gap: vars.$spacing-small;
+      font-weight: 500;
+      color: vars.$primary-color;
+      transition: all vars.$transition-base;
+      
+      &:hover {
+        color: vars.$primary-dark;
+        transform: translateX(-4px);
+      }
+    }
+  }
+  
+  .errorContainer {
+    background-color: vars.$bg-medium-light;
+    border-radius: vars.$border-radius-base;
+    border: 1px solid vars.$bg-light;
+    padding: vars.$spacing-large;
+    margin: vars.$spacing-large 0;
+    text-align: center;
+    
+    .error-message {
+      font-size: vars.$font-size-large;
+      color: vars.$error-color;
+      margin-bottom: vars.$spacing-base;
+    }
+    
+    .backLink {
+      display: inline-flex;
+      align-items: center;
+      gap: vars.$spacing-small;
+      font-weight: 500;
+      color: vars.$primary-color;
+      transition: all vars.$transition-base;
+      padding: vars.$spacing-small vars.$spacing-base;
+      border: 1px solid vars.$primary-color;
+      border-radius: vars.$border-radius-small;
+      
+      &:hover {
+        color: vars.$text-inverted;
+        background-color: vars.$primary-color;
+      }
+    }
+  }
+  
+  .newsArticle {
+    background-color: vars.$bg-medium-light;
+    border-radius: vars.$border-radius-base;
+    border: 1px solid vars.$bg-light;
+    overflow: hidden;
+    box-shadow: vars.$shadow-medium;
+    
+    .newsHeader {
+      padding: vars.$spacing-large;
+      
+      @include mixins.respond-to(sm) {
+        padding: vars.$spacing-base;
+      }
+      
+      h1 {
+        font-size: vars.$font-size-h1;
+        margin-bottom: vars.$spacing-base;
+        line-height: 1.3;
+        color: vars.$text-color;
+        
+        @include mixins.respond-to(sm) {
+          font-size: vars.$font-size-h2;
+        }
+      }
+      
+      .newsMeta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: vars.$spacing-base;
+        color: vars.$text-light;
+        
+        .metaItem {
+          display: flex;
+          align-items: center;
+          gap: vars.$spacing-small;
+          
+          svg {
+            color: vars.$primary-color;
+          }
+
+          span {
+            color: vars.$text-light;
+          }
+        }
+      }
+    }
+    
+    .newsImage {
+      width: 100%;
+      height: 400px;
+      
+      @include mixins.respond-to(md) {
+        height: 300px;
+      }
+      
+      @include mixins.respond-to(sm) {
+        height: 200px;
+      }
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    
+    .newsContent {
+      padding: vars.$spacing-large;
+      font-size: vars.$font-size-large;
+      line-height: 1.8;
+      color: vars.$text-light;
+      
+      @include mixins.respond-to(sm) {
+        padding: vars.$spacing-base;
+        font-size: vars.$font-size-base;
+      }
+      
+      p {
+        margin-bottom: vars.$spacing-base;
+      }
+    }
+    
+    .newsTags {
+      padding: 0 vars.$spacing-large vars.$spacing-large;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: vars.$spacing-small;
+      
+      @include mixins.respond-to(sm) {
+        padding: 0 vars.$spacing-base vars.$spacing-base;
+      }
+      
+      .tagsLabel {
+        font-weight: 500;
+        color: vars.$text-light;
+      }
+      
+      .tagsList {
+        display: flex;
+        flex-wrap: wrap;
+        gap: vars.$spacing-small;
+      }
+      
+      .tag {
+        padding: vars.$spacing-xs vars.$spacing-small;
+        background-color: vars.$primary-color;
+        color: vars.$text-inverted;
+        border-radius: vars.$border-radius-small;
+        font-size: vars.$font-size-small;
+        transition: all vars.$transition-base;
+        
+        &:hover {
+          background-color: vars.$bg-lighter;
+          color: vars.$text-inverted-light;
+        }
+      }
+    }
+  }
+} 

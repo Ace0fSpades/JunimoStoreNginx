@@ -1,0 +1,41 @@
+@use '../../styles/variables.scss' as vars;
+@use '../../styles/mixins.scss' as mixins;
+
+.newsPage {
+  padding: vars.$spacing-large 0;
+  
+  h1 {
+    margin-bottom: vars.$spacing-large;
+    position: relative;
+    padding-bottom: vars.$spacing-small;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 60px;
+      height: 3px;
+      background-color: vars.$primary-color;
+    }
+  }
+  
+  .newsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: vars.$spacing-large;
+    
+    @include mixins.respond-to(lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include mixins.respond-to(md) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: vars.$spacing-base;
+    }
+    
+    @include mixins.respond-to(sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+} 

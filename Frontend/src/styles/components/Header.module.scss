@@ -1,0 +1,393 @@
+@use '../../styles/variables.scss' as vars;
+@use '../../styles/mixins.scss' as mixins;
+
+.header {
+  background-color: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(5px);
+  padding: vars.$spacing-base 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: vars.$z-index-fixed;
+  
+  .headerContent {
+    @include mixins.flex(row, space-between, center);
+  }
+  
+  .logo {
+    a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    
+    .logoText {
+      font-family: vars.$font-family-headings;
+      font-size: vars.$font-size-xl;
+      font-weight: 700;
+      color: vars.$text-color;
+      
+      &:hover {
+        color: vars.$primary-light;
+      }
+    }
+    
+    .logoIcon {
+      display: inline-block;
+      margin-left: 5px;
+      margin-bottom: 2px;
+    }
+  }
+  
+  .catalogLink {
+    margin-right: vars.$spacing-base;
+    position: relative;
+    
+    @include mixins.respond-to(md) {
+      display: none;
+    }
+    
+    .catalogButton {
+      background-color: rgba(255, 255, 255, 0.15);
+      border: none;
+      border-radius: 20px;
+      color: vars.$text-color;
+      padding: 8px 20px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.25);
+      }
+    }
+    
+    .catalogDropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 200px;
+      background-color: vars.$bg-dark;
+      border-radius: vars.$border-radius-base;
+      box-shadow: vars.$shadow-medium;
+      padding: vars.$spacing-small;
+      margin-top: vars.$spacing-small;
+      z-index: vars.$z-index-dropdown;
+      display: flex;
+      flex-direction: column;
+      
+      a {
+        padding: vars.$spacing-small vars.$spacing-base;
+        color: vars.$text-color;
+        text-decoration: none;
+        border-radius: vars.$border-radius-small;
+        transition: background-color vars.$transition-base;
+        
+        &:hover {
+          background-color: rgba(vars.$bg-white, 0.1);
+        }
+      }
+      
+      .divider {
+        height: 1px;
+        background-color: rgba(vars.$bg-white, 0.1);
+        margin: vars.$spacing-small 0;
+      }
+    }
+  }
+  
+  .searchBar {
+    flex: 1;
+    max-width: 500px;
+    margin: 0 vars.$spacing-base;
+    position: relative;
+    
+    @include mixins.respond-to(md) {
+      display: none;
+    }
+    
+    .searchInputWrapper {
+      position: relative;
+      
+      input {
+        width: 100%;
+        padding: 8px 40px 8px 15px;
+        border-radius: 20px;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.15);
+        color: vars.$text-color;
+        
+        &::placeholder {
+          color: rgba(vars.$text-color, 0.7);
+        }
+        
+        &:focus {
+          outline: none;
+          background-color: rgba(vars.$bg-white, 0.2);
+        }
+      }
+      
+      .searchButton {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        color: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        &:hover {
+          color: vars.$text-color;
+        }
+      }
+      
+      .clearSearchButton {
+        position: absolute;
+        right: 35px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        color: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        
+        &:hover {
+          color: vars.$text-color;
+        }
+      }
+    }
+    
+    .searchResultsDropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      margin-top: 5px;
+      background-color: vars.$bg-lighter;
+      border-radius: vars.$border-radius-base;
+      box-shadow: vars.$shadow-medium;
+      z-index: 1000;
+      max-height: 400px;
+      overflow-y: auto;
+      
+      .searchResultsList {
+        padding: vars.$spacing-small;
+      }
+      
+      .searchResultItem {
+        display: flex;
+        padding: 8px;
+        border-radius: vars.$border-radius-small;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        
+        &:hover {
+          background-color: vars.$bg-light;
+        }
+        
+        .searchResultThumb {
+          width: 40px;
+          height: 40px;
+          margin-right: 10px;
+          flex-shrink: 0;
+          
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+          }
+        }
+        
+        .searchResultInfo {
+          flex: 1;
+          min-width: 0;
+          
+          .searchResultTitle {
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: vars.$text-inverted;
+          }
+          
+          .searchResultPrice {
+            font-size: 0.8rem;
+            color: vars.$text-inverted-light;
+          }
+        }
+      }
+      
+      .searchResultsFooter {
+        padding: 10px;
+        text-align: center;
+        border-top: 1px solid vars.$bg-light;
+        
+        a {
+          color: vars.$primary-color;
+          text-decoration: none;
+          font-size: 0.9rem;
+          
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      
+      .noSearchResults {
+        padding: vars.$spacing-base;
+        text-align: center;
+        color: vars.$text-inverted-light;
+      }
+      
+      .searchingIndicator {
+        padding: vars.$spacing-base;
+        text-align: center;
+        color: vars.$text-secondary;
+        font-style: italic;
+      }
+    }
+  }
+  
+  .nav {
+    @include mixins.respond-to(md) {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background-color: vars.$bg-dark;
+      padding: vars.$spacing-base;
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all vars.$transition-base;
+      
+      &.open {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+    
+    .navLinks {
+      @include mixins.flex(row, flex-end, center);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      gap: 15px;
+      
+      @include mixins.respond-to(md) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      li {
+        @include mixins.respond-to(md) {
+          margin: vars.$spacing-small 0;
+        }
+      }
+      
+      .iconLink {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.15);
+        color: vars.$text-color;
+        transition: all vars.$transition-base;
+        
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.25);
+        }
+      }
+      
+      .loginButton {
+        background-color: rgba(255, 255, 255, 0.15);
+        border: none;
+        border-radius: 20px;
+        color: vars.$text-color;
+        padding: 8px 20px;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        text-decoration: none;
+        display: inline-block;
+        
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.25);
+        }
+      }
+    }
+  }
+  
+  .mobileMenuButton {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    position: relative;
+    
+    @include mixins.respond-to(md) {
+      display: block;
+    }
+    
+    .hamburger {
+      position: absolute;
+      width: 24px;
+      height: 2px;
+      background-color: vars.$text-color;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.3s ease;
+      
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        width: 24px;
+        height: 2px;
+        background-color: vars.$text-color;
+        left: 0;
+        transition: all 0.3s ease;
+      }
+      
+      &::before {
+        top: -8px;
+      }
+      
+      &::after {
+        top: 8px;
+      }
+      
+      &.open {
+        background-color: transparent;
+        
+        &::before {
+          transform: rotate(45deg);
+          top: 0;
+        }
+        
+        &::after {
+          transform: rotate(-45deg);
+          top: 0;
+        }
+      }
+    }
+  }
+} 

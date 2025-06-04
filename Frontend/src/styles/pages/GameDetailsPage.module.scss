@@ -1,0 +1,259 @@
+@use '../../styles/variables.scss' as vars;
+@use '../../styles/mixins.scss' as mixins;
+
+.gameDetailsPage {
+  padding: vars.$spacing-medium 0;
+  
+  .backNav {
+    margin-bottom: vars.$spacing-base;
+    
+    .backLink {
+      display: inline-flex;
+      align-items: center;
+      gap: vars.$spacing-small;
+      font-weight: 500;
+      color: vars.$primary-color;
+      transition: all vars.$transition-base;
+      
+      &:hover {
+        color: vars.$primary-dark;
+        transform: translateX(-4px);
+      }
+    }
+  }
+  
+  .gameDetails {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: vars.$spacing-large;
+    margin-bottom: vars.$spacing-xl;
+    
+    @include mixins.respond-to(md) {
+      grid-template-columns: 1fr;
+    }
+    
+    .gameMedia {
+      .gameImage {
+        width: 100%;
+        border-radius: vars.$border-radius-base;
+        overflow: hidden;
+        box-shadow: vars.$shadow-medium;
+
+        img {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+      }
+    }
+    
+    .gameInfo {
+      .gameTitle {
+        font-size: vars.$font-size-h1;
+        margin-bottom: vars.$spacing-base;
+      }
+      
+      .gameMeta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: vars.$spacing-small;
+        margin-bottom: vars.$spacing-base;
+        
+        span {
+          padding: vars.$spacing-xs vars.$spacing-small;
+          background-color: vars.$primary-color;
+          border-radius: vars.$border-radius-small;
+          font-size: vars.$font-size-small;
+          color: vars.$text-inverted;
+        }
+      }
+      
+      .gamePriceSection {
+        display: flex;
+        align-items: center;
+        gap: vars.$spacing-large;
+        width: fit-content;
+        margin-bottom: vars.$spacing-large;
+        padding: vars.$spacing-base;
+        background-color: vars.$bg-medium-light;
+        border-radius: vars.$border-radius-base;
+        border: 1px solid vars.$bg-light;
+        
+        @include mixins.respond-to(sm) {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        
+        .gamePrice {
+          font-size: 2rem;
+          font-weight: 700;
+          color: vars.$primary-color;
+        }
+        
+        .gameActions {
+          display: flex;
+          gap: vars.$spacing-small;
+          
+          @include mixins.respond-to(sm) {
+            margin-top: vars.$spacing-small;
+            width: 100%;
+            
+            button {
+              flex: 1;
+            }
+          }
+          
+          .addToCartBtn,
+          .addToFavoritesBtn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: vars.$spacing-small;
+            transition: all vars.$transition-base;
+            
+            &.success {
+              background-color: vars.$success-color;
+              border-color: vars.$success-color;
+              color: vars.$text-inverted;
+            }
+          }
+        }
+      }
+      
+      .gameDescription {
+        margin-bottom: vars.$spacing-large;
+        
+        h2 {
+          font-size: vars.$font-size-h3;
+          margin-bottom: vars.$spacing-base;
+          position: relative;
+          padding-bottom: vars.$spacing-small;
+          
+          &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: vars.$primary-color;
+          }
+        }
+        
+        p {
+          line-height: 1.7;
+          color: vars.$text-light;
+        }
+      }
+      
+      .developerInfo {
+        background-color: vars.$bg-medium-light;
+        border-radius: vars.$border-radius-base;
+        border: 1px solid vars.$bg-light;
+        padding: vars.$spacing-base;
+        
+        h2 {
+          font-size: vars.$font-size-h3;
+          margin-bottom: vars.$spacing-base;
+          color: vars.$text-color;
+        }
+        
+        .developerContent {
+          h3 {
+            font-size: vars.$font-size-large;
+            margin-bottom: vars.$spacing-small;
+            color: vars.$text-color;
+          }
+          
+          p {
+            margin-bottom: vars.$spacing-small;
+            color: vars.$text-light;
+          }
+        }
+      }
+    }
+  }
+  
+  .gameReviews {
+    margin-top: vars.$spacing-xl;
+    
+    h2 {
+      font-size: vars.$font-size-h2;
+      margin-bottom: vars.$spacing-large;
+      position: relative;
+      padding-bottom: vars.$spacing-small;
+      color: vars.$text-color;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 3px;
+        background-color: vars.$primary-color;
+      }
+    }
+    
+    .reviewsList {
+      display: flex;
+      flex-direction: column;
+      gap: vars.$spacing-base;
+      
+      .reviewItem {
+        background-color: vars.$bg-medium-light;
+        border-radius: vars.$border-radius-base;
+        padding: vars.$spacing-base;
+        box-shadow: vars.$shadow-small;
+        border: 1px solid vars.$bg-light;
+
+        .reviewHeader {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: vars.$spacing-small;
+          color: vars.$text-color;
+
+          @include mixins.respond-to(sm) {
+            flex-direction: column;
+            gap: vars.$spacing-xs;
+          }
+          
+          .reviewAuthor {
+            font-weight: 500;
+            color: vars.$text-color;
+          }
+          
+          .reviewRating {
+            color: vars.$accent-color;
+            font-weight: 500;
+          }
+          
+          .reviewDate {
+            color: vars.$text-light;
+            font-size: vars.$font-size-small;
+          }
+        }
+        
+        .reviewTitle {
+          font-size: vars.$font-size-large;
+          margin-bottom: vars.$spacing-small;
+          color: vars.$text-color;
+        }
+        
+        .reviewText {
+          color: vars.$text-light;
+          line-height: 1.6;
+        }
+      }
+    }
+    
+    .noReviews {
+      background-color: vars.$bg-medium-light;
+      padding: vars.$spacing-large;
+      border-radius: vars.$border-radius-base;
+      text-align: center;
+      color: vars.$text-light;
+      border: 1px solid vars.$bg-light;
+    }
+  }
+} 

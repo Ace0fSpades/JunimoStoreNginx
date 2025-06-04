@@ -1,0 +1,156 @@
+@use '../../styles/variables.scss' as vars;
+@use '../../styles/mixins.scss' as mixins;
+
+.favoritesPage {
+  padding: vars.$spacing-large 0;
+  
+  .favoritesHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: vars.$spacing-large;
+    
+    h1 {
+      margin-bottom: 0;
+    }
+  }
+  
+  .emptyFavorites {
+    text-align: center;
+    padding: vars.$spacing-xxl;
+    background-color: vars.$bg-white;
+    border-radius: vars.$border-radius-base;
+    box-shadow: vars.$shadow-small;
+    
+    h2 {
+      margin-bottom: vars.$spacing-base;
+      color: vars.$text-light;
+    }
+    
+    p {
+      margin-bottom: vars.$spacing-large;
+      color: vars.$text-light;
+    }
+  }
+  
+  .favoritesList {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-base;
+  }
+  
+  .favoriteItem {
+    display: grid;
+    grid-template-columns: 200px 1fr auto;
+    gap: vars.$spacing-base;
+    background-color: vars.$bg-white;
+    border-radius: vars.$border-radius-base;
+    overflow: hidden;
+    box-shadow: vars.$shadow-small;
+    
+    @include mixins.respond-to(md) {
+      grid-template-columns: 150px 1fr;
+    }
+    
+    @include mixins.respond-to(sm) {
+      grid-template-columns: 1fr;
+    }
+    
+    .favoriteImage {
+      height: 100%;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        
+        @include mixins.respond-to(sm) {
+          height: 200px;
+        }
+      }
+    }
+    
+    .favoriteInfo {
+      padding: vars.$spacing-base;
+      
+      h3 {
+        margin-bottom: vars.$spacing-small;
+        
+        a {
+          color: vars.$text-color;
+          text-decoration: none;
+          transition: color vars.$transition-base;
+          
+          &:hover {
+            color: vars.$primary-color;
+          }
+        }
+      }
+      
+      .favoriteMeta {
+        display: flex;
+        gap: vars.$spacing-small;
+        margin-bottom: vars.$spacing-small;
+        
+        span {
+          font-size: vars.$font-size-small;
+          padding: vars.$spacing-xs vars.$spacing-small;
+          background-color: vars.$bg-light;
+          border-radius: vars.$border-radius-small;
+          color: vars.$text-light;
+        }
+      }
+      
+      .favoriteDescription {
+        color: vars.$text-light;
+        font-size: vars.$font-size-base;
+        line-height: 1.5;
+      }
+    }
+    
+    .favoriteActions {
+      padding: vars.$spacing-base;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      gap: vars.$spacing-base;
+      border-left: 1px solid vars.$bg-light;
+      
+      @include mixins.respond-to(md) {
+        grid-column: 2;
+        border-left: none;
+        border-top: 1px solid vars.$bg-light;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      @include mixins.respond-to(sm) {
+        grid-column: 1;
+      }
+      
+      .favoritePrice {
+        font-size: vars.$font-size-large;
+        font-weight: 700;
+        color: vars.$primary-color;
+      }
+      
+      .favoriteButtons {
+        display: flex;
+        gap: vars.$spacing-small;
+        
+        .removeBtn {
+          padding: vars.$spacing-small;
+          color: vars.$error-color;
+          border-color: vars.$error-color;
+          
+          &:hover {
+            background-color: vars.$error-color;
+            color: vars.$text-inverted;
+          }
+        }
+      }
+    }
+  }
+} 

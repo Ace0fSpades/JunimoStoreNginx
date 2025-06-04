@@ -1,0 +1,21 @@
+# Логи и временные файлы
+*.log
+logs/
+tmp/
+temp/
+
+# Переменные окружения
+.env
+.env.local
+.env.*.local
+
+# Файлы Docker и данные
+.docker/
+docker-compose.override.yml
+postgres_data/
+
+# Зависимости и собранные файлы
+node_modules/
+build/
+dist/
+vendor/

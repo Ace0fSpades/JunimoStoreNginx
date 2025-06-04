@@ -1,0 +1,67 @@
+@use '../../styles/variables.scss' as vars;
+@use '../../styles/mixins.scss' as mixins;
+
+.notFoundPage {
+  padding: vars.$spacing-xxl 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 300px);
+  
+  .notFoundContent {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    
+    .errorCode {
+      font-size: 10rem;
+      font-weight: 900;
+      color: vars.$primary-color;
+      line-height: 1;
+      margin-bottom: vars.$spacing-base;
+      text-shadow: 0 0 10px rgba(vars.$primary-color, 0.3);
+      
+      @include mixins.respond-to(sm) {
+        font-size: 6rem;
+      }
+    }
+    
+    h1 {
+      font-size: vars.$font-size-h1;
+      margin-bottom: vars.$spacing-base;
+      color: vars.$text-color;
+      
+      @include mixins.respond-to(sm) {
+        font-size: vars.$font-size-h2;
+      }
+    }
+    
+    p {
+      font-size: vars.$font-size-large;
+      color: vars.$text-light;
+      margin-bottom: vars.$spacing-large;
+      
+      @include mixins.respond-to(sm) {
+        font-size: vars.$font-size-base;
+      }
+    }
+    
+    .notFoundActions {
+      display: flex;
+      justify-content: center;
+      gap: vars.$spacing-base;
+      
+      a {
+        display: flex;
+        align-items: center;
+        gap: vars.$spacing-small;
+        padding: vars.$spacing-small vars.$spacing-large;
+        
+        @include mixins.respond-to(sm) {
+          flex: 1;
+          justify-content: center;
+        }
+      }
+    }
+  }
+} 

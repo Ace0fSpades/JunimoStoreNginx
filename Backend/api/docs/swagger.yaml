@@ -1,0 +1,1885 @@
+basePath: /
+definitions:
+  dto.CartItemDTO:
+    properties:
+      game:
+        $ref: '#/definitions/dto.GameDTO'
+      id:
+        type: integer
+      quantity:
+        type: integer
+    type: object
+  dto.CartResponseDTO:
+    properties:
+      id:
+        type: integer
+      items:
+        items:
+          $ref: '#/definitions/dto.CartItemDTO'
+        type: array
+      total_cost:
+        type: number
+      user:
+        $ref: '#/definitions/dto.UserResponseDTO'
+      user_id:
+        type: integer
+    type: object
+  dto.CategoryDTO:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  dto.DeveloperDTO:
+    properties:
+      country:
+        type: string
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      updated_at:
+        type: string
+      website_url:
+        type: string
+    type: object
+  dto.GameCreateDTO:
+    properties:
+      category_id:
+        type: integer
+      description:
+        type: string
+      developer_id:
+        type: integer
+      image_data:
+        type: string
+      image_name:
+        type: string
+      price:
+        minimum: 0
+        type: number
+      release_date:
+        type: string
+      title:
+        type: string
+    required:
+    - category_id
+    - developer_id
+    - price
+    - title
+    type: object
+  dto.GameDTO:
+    properties:
+      category:
+        $ref: '#/definitions/dto.CategoryDTO'
+      created_at:
+        type: string
+      description:
+        type: string
+      developer:
+        $ref: '#/definitions/dto.DeveloperDTO'
+      id:
+        type: integer
+      image_data:
+        description: Base64-encoded image data
+        type: string
+      image_name:
+        type: string
+      price:
+        type: number
+      release_date:
+        type: string
+      restricts:
+        items:
+          $ref: '#/definitions/dto.RestrictDTO'
+        type: array
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  dto.GameUpdateDTO:
+    properties:
+      category_id:
+        type: integer
+      description:
+        type: string
+      developer_id:
+        type: integer
+      image_data:
+        type: string
+      image_name:
+        type: string
+      price:
+        minimum: 0
+        type: number
+      release_date:
+        type: string
+      title:
+        type: string
+    type: object
+  dto.OrderCreateDTO:
+    properties:
+      items:
+        items:
+          properties:
+            game_id:
+              type: integer
+            quantity:
+              minimum: 1
+              type: integer
+          required:
+          - game_id
+          - quantity
+          type: object
+        type: array
+      user_id:
+        type: integer
+    required:
+    - items
+    - user_id
+    type: object
+  dto.OrderItemDTO:
+    properties:
+      created_at:
+        type: string
+      game:
+        $ref: '#/definitions/dto.GameDTO'
+      id:
+        type: integer
+      order_id:
+        type: integer
+      price:
+        type: number
+      quantity:
+        type: integer
+    type: object
+  dto.OrderResponseDTO:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      items:
+        items:
+          $ref: '#/definitions/dto.OrderItemDTO'
+        type: array
+      status:
+        type: string
+      total_cost:
+        type: number
+      updated_at:
+        type: string
+      user:
+        $ref: '#/definitions/dto.UserResponseDTO'
+      user_id:
+        type: integer
+    type: object
+  dto.RestrictDTO:
+    properties:
+      created_at:
+        type: string
+      game_id:
+        type: integer
+      game_title:
+        type: string
+      id:
+        type: integer
+      region:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  dto.ReviewCreateDTO:
+    properties:
+      comment:
+        type: string
+      game_id:
+        type: integer
+      rating:
+        maximum: 5
+        minimum: 1
+        type: integer
+      user_id:
+        type: integer
+    required:
+    - game_id
+    - rating
+    - user_id
+    type: object
+  dto.ReviewResponseDTO:
+    properties:
+      comment:
+        type: string
+      created_at:
+        type: string
+      game:
+        $ref: '#/definitions/dto.GameDTO'
+      id:
+        type: integer
+      rating:
+        type: integer
+      updated_at:
+        type: string
+      user:
+        $ref: '#/definitions/dto.UserResponseDTO'
+    type: object
+  dto.ReviewUpdateDTO:
+    properties:
+      comment:
+        type: string
+      rating:
+        maximum: 5
+        minimum: 1
+        type: integer
+    required:
+    - rating
+    type: object
+  dto.RoleDTO:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      type:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  dto.UserLoginDTO:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  dto.UserResponseDTO:
+    properties:
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      nickname:
+        type: string
+      points:
+        type: integer
+      role:
+        $ref: '#/definitions/dto.RoleDTO'
+      updated_at:
+        type: string
+    type: object
+  dto.UserSignupDTO:
+    properties:
+      confirm_password:
+        type: string
+      email:
+        type: string
+      nickname:
+        type: string
+      password:
+        minLength: 6
+        type: string
+    required:
+    - confirm_password
+    - email
+    - nickname
+    - password
+    type: object
+  dto.UserUpdateDTO:
+    properties:
+      email:
+        type: string
+      nickname:
+        type: string
+      password:
+        type: string
+      role_id:
+        type: integer
+    type: object
+host: localhost
+info:
+  contact: {}
+  description: REST-API for game store
+  title: Game Store
+  version: "1.0"
+paths:
+  /api/v1/auth/login:
+    post:
+      consumes:
+      - application/json
+      description: This endpoint allows the user to log in by providing email and
+        password
+      parameters:
+      - description: User credentials (email and password)
+        in: body
+        name: login
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UserLoginDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully logged in and returned user data
+          schema:
+            $ref: '#/definitions/dto.UserResponseDTO'
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Email or password is incorrect
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Logs in a User and returns user data
+      tags:
+      - Users
+  /api/v1/auth/refresh:
+    post:
+      consumes:
+      - application/json
+      description: This endpoint refreshes an access token using a refresh token
+      parameters:
+      - description: Refresh token object
+        in: body
+        name: refresh_token
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully refreshed token
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Invalid token
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Refreshes an access token
+      tags:
+      - Users
+  /api/v1/auth/signup:
+    post:
+      consumes:
+      - application/json
+      description: This endpoint allows you to register a new User by providing required
+        fields
+      parameters:
+      - description: User data to register
+        in: body
+        name: signup
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UserSignupDTO'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: User registered successfully
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "409":
+          description: Email or nickname already in use
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Registers a new User
+      tags:
+      - Users
+  /api/v1/cart/{user_id}:
+    get:
+      consumes:
+      - application/json
+      description: Returns a user's shopping cart and its items
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User's shopping cart
+          schema:
+            $ref: '#/definitions/dto.CartResponseDTO'
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Get a user's shopping cart
+      tags:
+      - Cart
+  /api/v1/cart/{user_id}/add/{game_id}:
+    post:
+      consumes:
+      - application/json
+      description: Adds a game to a user's shopping cart
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      - description: Game ID
+        in: path
+        name: game_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Game added to cart successfully
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Game not found
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Add a game to cart
+      tags:
+      - Cart
+  /api/v1/cart/{user_id}/clear:
+    delete:
+      consumes:
+      - application/json
+      description: Clears all items from a user's shopping cart
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Cart cleared successfully
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Clear cart
+      tags:
+      - Cart
+  /api/v1/cart/{user_id}/remove/{game_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Removes a game from a user's shopping cart
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      - description: Game ID
+        in: path
+        name: game_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Game removed from cart successfully
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Remove a game from cart
+      tags:
+      - Cart
+  /api/v1/cart/{user_id}/update/{game_id}:
+    patch:
+      consumes:
+      - application/json
+      description: Updates the quantity of a game in a user's shopping cart
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      - description: Game ID
+        in: path
+        name: game_id
+        required: true
+        type: integer
+      - description: New quantity
+        in: query
+        name: quantity
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Cart item quantity updated successfully
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Update cart item quantity
+      tags:
+      - Cart
+  /api/v1/categories:
+    get:
+      consumes:
+      - application/json
+      description: Returns a list of all game categories
+      parameters:
+      - default: 100
+        description: Limit
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of categories
+          schema:
+            items:
+              $ref: '#/definitions/dto.CategoryDTO'
+            type: array
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get all categories
+      tags:
+      - Categories
+  /api/v1/developers:
+    get:
+      consumes:
+      - application/json
+      description: Returns a list of all game developers
+      parameters:
+      - default: 100
+        description: Limit
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of developers
+          schema:
+            items:
+              $ref: '#/definitions/dto.DeveloperDTO'
+            type: array
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get all developers
+      tags:
+      - Developers
+  /api/v1/favorite/{user_id}:
+    get:
+      consumes:
+      - application/json
+      description: Returns the list of games favorited by the user
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of favorite games
+          schema:
+            items:
+              $ref: '#/definitions/dto.GameDTO'
+            type: array
+        "400":
+          description: Invalid user ID
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Get user's favorites
+      tags:
+      - Favorites
+  /api/v1/favorite/{user_id}/add/{game_id}:
+    post:
+      consumes:
+      - application/json
+      description: Adds a game to a user's favorites list
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      - description: Game ID
+        in: path
+        name: game_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Game added to favorites successfully
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Game not found
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Add game to favorites
+      tags:
+      - Favorites
+  /api/v1/favorite/{user_id}/clear:
+    delete:
+      consumes:
+      - application/json
+      description: Removes all games from a user's favorites list
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Favorites cleared successfully
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid user ID
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Clear all favorites
+      tags:
+      - Favorites
+  /api/v1/favorite/{user_id}/remove/{game_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Removes a game from a user's favorites list
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      - description: Game ID
+        in: path
+        name: game_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Game removed from favorites successfully
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Remove game from favorites
+      tags:
+      - Favorites
+  /api/v1/games:
+    get:
+      consumes:
+      - application/json
+      description: Returns a paginated list of games
+      parameters:
+      - default: 10
+        description: Limit
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of games
+          schema:
+            items:
+              $ref: '#/definitions/dto.GameDTO'
+            type: array
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get all games
+      tags:
+      - Games
+    post:
+      consumes:
+      - application/json
+      description: Creates a new game with the provided details
+      parameters:
+      - description: Game details
+        in: body
+        name: game
+        required: true
+        schema:
+          $ref: '#/definitions/dto.GameCreateDTO'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Game created successfully
+          schema:
+            $ref: '#/definitions/dto.GameDTO'
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Create a new game
+      tags:
+      - Games
+  /api/v1/games/{game_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Deletes a game by its ID
+      parameters:
+      - description: Game ID
+        in: path
+        name: game_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Game deleted successfully
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Delete a game
+      tags:
+      - Games
+    get:
+      consumes:
+      - application/json
+      description: Returns a game by its ID
+      parameters:
+      - description: Game ID
+        in: path
+        name: game_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Game details
+          schema:
+            $ref: '#/definitions/dto.GameDTO'
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Game not found
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get a game by ID
+      tags:
+      - Games
+    patch:
+      consumes:
+      - application/json
+      description: Updates a game with the provided details
+      parameters:
+      - description: Game ID
+        in: path
+        name: game_id
+        required: true
+        type: integer
+      - description: Game details to update
+        in: body
+        name: game
+        required: true
+        schema:
+          $ref: '#/definitions/dto.GameUpdateDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Game updated successfully
+          schema:
+            $ref: '#/definitions/dto.GameDTO'
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Game not found
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Update a game
+      tags:
+      - Games
+  /api/v1/games/category/{category_id}:
+    get:
+      consumes:
+      - application/json
+      description: Returns games belonging to a specific category
+      parameters:
+      - description: Category ID
+        in: path
+        name: category_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of games in the category
+          schema:
+            items:
+              $ref: '#/definitions/dto.GameDTO'
+            type: array
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get games by category
+      tags:
+      - Games
+  /api/v1/games/discounted:
+    get:
+      consumes:
+      - application/json
+      description: Returns a list of games with discounts
+      parameters:
+      - default: 4
+        description: Limit
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of discounted games
+          schema:
+            items:
+              $ref: '#/definitions/dto.GameDTO'
+            type: array
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get discounted games
+      tags:
+      - Games
+  /api/v1/games/search:
+    get:
+      consumes:
+      - application/json
+      description: Searches for games by title
+      parameters:
+      - description: Game title to search for
+        in: query
+        name: title
+        required: true
+        type: string
+      - default: 10
+        description: Limit
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of games matching the search criteria
+          schema:
+            items:
+              $ref: '#/definitions/dto.GameDTO'
+            type: array
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Search games by title
+      tags:
+      - Games
+  /api/v1/games/top-selling:
+    get:
+      consumes:
+      - application/json
+      description: Returns a list of top selling games
+      parameters:
+      - default: 3
+        description: Limit
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of top selling games
+          schema:
+            items:
+              $ref: '#/definitions/dto.GameDTO'
+            type: array
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get top selling games
+      tags:
+      - Games
+  /api/v1/library/{user_id}:
+    get:
+      consumes:
+      - application/json
+      description: Returns the list of games owned by the user
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of games in the user's library
+          schema:
+            items:
+              $ref: '#/definitions/dto.GameDTO'
+            type: array
+        "400":
+          description: Invalid user ID
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Get user's game library
+      tags:
+      - Library
+  /api/v1/orders:
+    get:
+      consumes:
+      - application/json
+      description: Returns all orders (admin only)
+      parameters:
+      - default: 10
+        description: Limit
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of all orders
+          schema:
+            items:
+              $ref: '#/definitions/dto.OrderResponseDTO'
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "403":
+          description: Forbidden - admin only
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Get all orders
+      tags:
+      - Orders
+  /api/v1/orders/{order_id}:
+    get:
+      consumes:
+      - application/json
+      description: Returns an order by its ID
+      parameters:
+      - description: Order ID
+        in: path
+        name: order_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Order details
+          schema:
+            $ref: '#/definitions/dto.OrderResponseDTO'
+        "400":
+          description: Invalid order ID
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Order not found
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Get order by ID
+      tags:
+      - Orders
+  /api/v1/orders/{user_id}/create:
+    post:
+      consumes:
+      - application/json
+      description: Creates a new order from the items in a user's shopping cart
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Order created successfully
+          schema:
+            $ref: '#/definitions/dto.OrderCreateDTO'
+        "400":
+          description: Invalid user ID
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Cart not found or empty
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Create order from cart
+      tags:
+      - Orders
+  /api/v1/orders/user/{user_id}:
+    get:
+      consumes:
+      - application/json
+      description: Returns all orders for a specific user
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of orders
+          schema:
+            items:
+              $ref: '#/definitions/dto.OrderResponseDTO'
+            type: array
+        "400":
+          description: Invalid user ID
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Get user orders
+      tags:
+      - Orders
+  /api/v1/reviews:
+    post:
+      consumes:
+      - application/json
+      description: Creates a new review for a game
+      parameters:
+      - description: Review data
+        in: body
+        name: review
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ReviewCreateDTO'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Review created successfully
+          schema:
+            $ref: '#/definitions/dto.ReviewCreateDTO'
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Game not found
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Create a new review
+      tags:
+      - Reviews
+  /api/v1/reviews/{review_id}:
+    get:
+      consumes:
+      - application/json
+      description: Returns a review by its ID
+      parameters:
+      - description: Review ID
+        in: path
+        name: review_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Review details
+          schema:
+            $ref: '#/definitions/dto.ReviewResponseDTO'
+        "400":
+          description: Invalid review ID
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Review not found
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get a review by ID
+      tags:
+      - Reviews
+  /api/v1/reviews/{review_id}/user/{user_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Deletes an existing review
+      parameters:
+      - description: Review ID
+        in: path
+        name: review_id
+        required: true
+        type: integer
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Review deleted successfully
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Review not found
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Delete a review
+      tags:
+      - Reviews
+    patch:
+      consumes:
+      - application/json
+      description: Updates an existing review
+      parameters:
+      - description: Review ID
+        in: path
+        name: review_id
+        required: true
+        type: integer
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      - description: Updated review data
+        in: body
+        name: review
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ReviewUpdateDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Review updated successfully
+          schema:
+            $ref: '#/definitions/dto.ReviewUpdateDTO'
+        "400":
+          description: Invalid input
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Review not found
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Update a review
+      tags:
+      - Reviews
+  /api/v1/reviews/game/{game_id}:
+    get:
+      consumes:
+      - application/json
+      description: Returns all reviews for a specific game
+      parameters:
+      - description: Game ID
+        in: path
+        name: game_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of reviews
+          schema:
+            items:
+              $ref: '#/definitions/dto.ReviewResponseDTO'
+            type: array
+        "400":
+          description: Invalid game ID
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Game not found
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get reviews by game ID
+      tags:
+      - Reviews
+  /api/v1/users:
+    get:
+      consumes:
+      - application/json
+      description: Fetches a paginated list of users from the database
+      parameters:
+      - default: 10
+        description: Limit number of results
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: Offset for pagination
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully retrieved the paginated users
+          schema:
+            items:
+              $ref: '#/definitions/dto.UserResponseDTO'
+            type: array
+        "400":
+          description: Invalid query parameters
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Failed to fetch users
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Get users with pagination
+      tags:
+      - Users
+  /api/v1/users/{user_id}:
+    get:
+      consumes:
+      - application/json
+      description: Fetches a User by their ID from the database
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully retrieved the user data
+          schema:
+            $ref: '#/definitions/dto.UserResponseDTO'
+        "400":
+          description: Invalid user ID
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Failed to fetch user
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Get a User by ID
+      tags:
+      - Users
+    patch:
+      consumes:
+      - application/json
+      description: Updates a User's information
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: string
+      - description: User data to update
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UserUpdateDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User updated successfully
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid input or user ID
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties: true
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Failed to update user
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Update a User
+      tags:
+      - Users
+securityDefinitions:
+  ApiKeyAuth:
+    description: 'JWT Authorization header using Bearer scheme. Example: "Bearer {token}"'
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

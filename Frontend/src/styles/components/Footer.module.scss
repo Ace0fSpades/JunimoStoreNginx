@@ -1,0 +1,113 @@
+@use '../../styles/variables.scss' as vars;
+@use '../../styles/mixins.scss' as mixins;
+
+.footer {
+  background-color: vars.$bg-dark;
+  color: vars.$text-inverted;
+  padding: vars.$spacing-large 0 vars.$spacing-base;
+  margin-top: vars.$spacing-xl;
+  
+  .footerContent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: vars.$spacing-large;
+    margin-bottom: vars.$spacing-large;
+    
+    @include mixins.respond-to(lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include mixins.respond-to(sm) {
+      grid-template-columns: 1fr;
+      gap: vars.$spacing-medium;
+    }
+  }
+  
+  .footerSection {
+    h3 {
+      font-size: vars.$font-size-large;
+      margin-bottom: vars.$spacing-base;
+      color: vars.$primary-light;
+      position: relative;
+      padding-bottom: vars.$spacing-small;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 40px;
+        height: 2px;
+        background-color: vars.$primary-color;
+      }
+    }
+    
+    p {
+      margin-bottom: vars.$spacing-small;
+      line-height: 1.6;
+      color: vars.$text-lighter;
+    }
+    
+    &.footerLogo {
+      p {
+        margin-bottom: vars.$spacing-base;
+      }
+    }
+  }
+  
+  .footerLinks {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      margin-bottom: vars.$spacing-small;
+      
+      a {
+        color: vars.$text-lighter;
+        text-decoration: none;
+        transition: color vars.$transition-base;
+        
+        &:hover {
+          color: vars.$primary-light;
+        }
+      }
+    }
+  }
+  
+  .socialLinks {
+    display: flex;
+    gap: vars.$spacing-small;
+    margin-top: vars.$spacing-base;
+    
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: rgba(vars.$bg-white, 0.1);
+      color: vars.$text-lighter;
+      transition: all vars.$transition-base;
+      
+      &:hover {
+        color: vars.$text-inverted;
+        background-color: vars.$primary-color;
+        transform: translateY(-3px);
+      }
+    }
+  }
+  
+  .footerBottom {
+    padding-top: vars.$spacing-base;
+    text-align: center;
+    border-top: 1px solid rgba(vars.$bg-white, 0.1);
+    
+    p {
+      margin: 0;
+      color: vars.$text-lighter;
+      font-size: vars.$font-size-small;
+    }
+  }
+} 

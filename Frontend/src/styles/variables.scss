@@ -1,0 +1,100 @@
+// Colors
+$primary-color: #ffce20;
+$primary-dark: #e6b800;
+$primary-light: #ffd94c;
+$secondary-color: #7d8b9c;
+$secondary-dark: #5e6c7d;
+$secondary-light: #9ba9b7;
+$accent-color: #ffce20;
+$accent-dark: #e6b800;
+$accent-light: #ffd94c;
+$danger-color: #e74c3c;
+
+$text-color: #e9f0f7;
+$text-light: #c5d4e3;
+$text-secondary: #a4bfd7;
+$text-lighter: #8aabcc;
+$text-inverted: #3d3d3d;
+$text-inverted-light: #646464;
+
+$bg-dark: #121920;
+$bg-medium: #1f2a3d;
+$bg-medium-light: #2a364a;
+$bg-light: #dfe6e9;
+$bg-lighter: #f5f6fa;
+$bg-white: #ffffff;
+
+$error-color: #e74c3c;
+$success-color: #2ecc71;
+$warning-color: #f39c12;
+$info-color: #3498db;
+
+// Typography
+$font-family-main: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$font-family-headings: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$font-size-base: 16px;
+$font-size-small: 14px;
+$font-size-xs: 12px;
+$font-size-large: 18px;
+$font-size-xl: 20px;
+$font-size-xxl: 24px;
+$font-size-h1: 32px;
+$font-size-h2: 28px;
+$font-size-h3: 24px;
+$font-size-h4: 20px;
+$font-size-h5: 18px;
+$font-size-h6: 16px;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-small: 8px;
+$spacing-base: 16px;
+$spacing-medium: 24px;
+$spacing-large: 32px;
+$spacing-xl: 48px;
+$spacing-xxl: 64px;
+
+// Borders & Radius
+$border-radius-small: 4px;
+$border-radius-base: 8px;
+$border-radius-large: 16px;
+$border-radius-circle: 50%;
+
+$border-width-thin: 1px;
+$border-width-base: 2px;
+$border-width-thick: 3px;
+
+// Container widths
+$container-small: 640px;
+$container-medium: 768px;
+$container-large: 1024px;
+$container-xl: 1280px;
+$container-xxl: 1536px;
+
+// Z-index
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;
+
+// Breakpoints
+$breakpoint-xs: 480px;
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-xxl: 1536px;
+
+// Shadows
+$shadow-small: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+$shadow-medium: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+$shadow-large: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.10);
+$shadow-xl: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
+// Transitions
+$transition-fast: 0.2s ease;
+$transition-base: 0.3s ease;
+$transition-slow: 0.5s ease; 
